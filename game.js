@@ -80,20 +80,6 @@ function create() {
     //controles
     //teclado
     this.keys = this.input.keyboard.createCursorKeys();
-
-    //movil:
-    // Detectar toques en la pantalla
-    this.input.on('pointerdown', (pointer) => {
-        const x = pointer.x;
-        const y = pointer.y;
-
-        // Mover el personaje basado en la posición del toque
-        if (x < this.cameras.main.width / 2) {
-            this.mario.setVelocityX(-350);
-        } else {
-            this.mario.setVelocityX(350);
-        }
-    });
 }
 
 function update() {
@@ -143,18 +129,18 @@ function update() {
         // Mover el personaje basado en la posición del toque
         if (x < (this.cameras.main.width / 2)-5) {
             this.mario.anims.play('mario-walk', true);
-            this.mario.setVelocityX(-30);
+            this.mario.setVelocityX(-50);
             this.mario.flipX = true
         } else if (x > (this.cameras.main.width / 2)+5){
             this.mario.anims.play('mario-walk', true);
-            this.mario.setVelocityX(30);
+            this.mario.setVelocityX(50);
             this.mario.flipX = false
         }
         else {
             this.mario.anims.play('mario-idle', true);
         }
 
-        if (y < this.cameras.main.height / 2) {
+        if (y < this.cameras.main.height / 2 && this.mario.body.touching.down) {
             this.mario.setVelocityY(-300);
             this.mario.anims.play('mario-jump', true);
         } 
