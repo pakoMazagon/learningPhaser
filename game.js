@@ -77,7 +77,23 @@ function create() {
 
     createAnimations(this)
     
+    //controles
+    //teclado
     this.keys = this.input.keyboard.createCursorKeys();
+
+    //movil:
+    // Detectar toques en la pantalla
+    this.input.on('pointerdown', (pointer) => {
+        const x = pointer.x;
+        const y = pointer.y;
+
+        // Mover el personaje basado en la posición del toque
+        if (x < this.cameras.main.width / 2) {
+            this.mario.setVelocityX(-350);
+        } else {
+            this.mario.setVelocityX(350);
+        }
+    });
 }
 
 function update() {
@@ -118,4 +134,17 @@ function update() {
         }, 2000)
     }
     
+    //movil:
+    // Detectar toques en la pantalla
+    this.input.on('pointerdown', (pointer) => {
+        const x = pointer.x;
+        const y = pointer.y;
+
+        // Mover el personaje basado en la posición del toque
+        if (x < this.cameras.main.width / 2) {
+            this.mario.setVelocityX(-350);
+        } else {
+            this.mario.setVelocityX(350);
+        }
+    });
 }
