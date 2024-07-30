@@ -129,18 +129,20 @@ function update() {
         // Mover el personaje basado en la posición del toque
         if (x < (this.cameras.main.width / 2)-5) {
             this.mario.anims.play('mario-walk', true);
-            this.mario.setVelocityX(-50);
+            // this.mario.setVelocityX(-50);
+            this.mario.x -= 2
             this.mario.flipX = true
         } else if (x > (this.cameras.main.width / 2)+5){
             this.mario.anims.play('mario-walk', true);
-            this.mario.setVelocityX(50);
+            // this.mario.setVelocityX(50);
+            this.mario.x += 2
             this.mario.flipX = false
         }
         else {
             this.mario.anims.play('mario-idle', true);
         }
 
-        if (y < this.cameras.main.height / 2 && this.mario.body.touching.down) {
+        if (y < this.cameras.main.height / 3 && this.mario.body.touching.down) {
             this.mario.setVelocityY(-300);
             this.mario.anims.play('mario-jump', true);
         } 
